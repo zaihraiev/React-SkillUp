@@ -1,16 +1,15 @@
-﻿import { useRef } from "react";
+﻿import { useRef, useContext, useEffect } from "react";
+import { QuizContext } from "../store/quiz-context.jsx";
 import QUESTIONS from "../questions.js";
 
-export default function Answers({
-  answers,
-  selectedAnswer,
-  answerState,
-  onSelect,
-}) {
+export default function Answers() {
+  const { activeQuestionIndex, answerState, addAnswer, answers } =
+    useContext(QuizContext);
   const shuffledAnswers = useRef();
+  const selectedAnswer = answers[answers.length - 1];
 
   if (!shuffledAnswers.current) {
-    shuffledAnswers.current = [...answers];
+    shuffledAnswers.current = [...QUESTIONS[activeQuestionIndex].answers];
     shuffledAnswers.current.sort((a, b) => Math.random() - 0.5);
   }
 
@@ -33,7 +32,11 @@ export default function Answers({
 
         return (
           <li key={a} className="answer">
-            <button className={cssClasses} onClick={() => onSelect(a)}>
+            <button
+              className={cssClasses}
+              onClick={() => addAnswer(a)}
+              disabled={answerState !== ""}
+            >
               {a}
             </button>
           </li>
