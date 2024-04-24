@@ -1,47 +1,72 @@
-﻿import { createContext, useReducer } from "react";
+﻿import { createContext, useReducer, useRef } from "react";
 
 const CartContext = createContext({
   items: [],
   addItem: (item) => {},
   removeItem: (id) => {},
+  updateCartItemQuantity: (id, quantity) => {},
 });
 
 function cartReducer(state, action) {
   switch (action.type) {
-    case "ADD_ITEM":
+    case "ADD_ITEM": {
       const existingItem = state.items.find(
         (item) => item.id === action.item.id,
       );
-
-      const updatedItemsToAdd = [...state.items];
+      const updatedItems = [...state.items];
 
       if (existingItem) {
         const updatedItem = {
           ...existingItem,
           quantity: existingItem.quantity + 1,
         };
-        updatedItemsToAdd[state.items.indexOf(existingItem)] = updatedItem;
+        updatedItems[state.items.indexOf(existingItem)] = updatedItem;
       } else {
-        updatedItemsToAdd.push({ ...action.item, quantity: 1 });
+        updatedItems.push({ ...action.item, quantity: 1 });
       }
 
-      return { ...state, items: updatedItemsToAdd };
-    case "REMOVE_ITEM":
-      const existingCartItem = state.find((item) => item.id === action.id);
-      const updatedItemsToRemove = [...state.items];
+      return { ...state, items: updatedItems };
+    }
 
-      if (existingCartItem.quantity === 1) {
-        updatedItemsToRemove.splice(state.items.indexOf(existingCartItem), 1);
+    case "REMOVE_ITEM": {
+      const existingItem = state.items.find((item) => item.id === action.id);
+      const updatedItems = [...state.items];
+
+      if (existingItem.quantity === 1) {
+        updatedItems.splice(state.items.indexOf(existingItem), 1);
       } else {
         const updatedItem = {
-          ...existingCartItem,
-          quantity: existingCartItem.quantity - 1,
+          ...existingItem,
+          quantity: existingItem.quantity - 1,
         };
-        updatedItemsToRemove[state.items.indexOf(existingCartItem)] =
-          updatedItem;
+        updatedItems[state.items.indexOf(existingItem)] = updatedItem;
       }
 
-      return { ...state, items: updatedItemsToRemove };
+      return { ...state, items: updatedItems };
+    }
+
+    case "UPDATE_ITEM":
+      const updatedItems = [...state.items];
+      const updatedItemIndex = updatedItems.findIndex(
+        (item) => item.id === action.payload.id,
+      );
+      const updatedItem = {
+        ...updatedItems[updatedItemIndex],
+      };
+
+      updatedItem.quantity += action.payload.quantity;
+
+      if (updatedItem.quantity <= 0) {
+        updatedItems.splice(updatedItemIndex, 1);
+      } else {
+        updatedItems[updatedItemIndex] = updatedItem;
+      }
+
+      return {
+        ...state,
+        items: updatedItems,
+      };
+
     default:
       return state;
   }
@@ -54,6 +79,7 @@ export function CartContextProvider({ children }) {
     items: cart.items,
     addItem,
     removeItem,
+    updateCartItemQuantity,
   };
 
   function addItem(item) {
@@ -62,6 +88,10 @@ export function CartContextProvider({ children }) {
 
   function removeItem(id) {
     dispatchCartAction({ type: "REMOVE_ITEM", id });
+  }
+
+  function updateCartItemQuantity(id, quantity) {
+    dispatchCartAction({ type: "UPDATE_ITEM", payload: { id, quantity } });
   }
 
   return (
