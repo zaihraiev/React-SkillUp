@@ -18,10 +18,10 @@ export default function useHttps(url, configuration, initialData) {
   const [isLoading, setIsLoading] = useState(false);
 
   const sendRequest = useCallback(
-    async function sendRequest() {
+    async function sendRequest(data) {
       setIsLoading(true);
       try {
-        const resData = await fetchData(url, configuration);
+        const resData = await fetchData(url, { ...configuration, body: data });
         setData(resData);
       } catch (error) {
         setError(error.message || "Something went wrong!");
@@ -32,7 +32,11 @@ export default function useHttps(url, configuration, initialData) {
   );
 
   useEffect(() => {
-    if (configuration && configuration.method === "GET") {
+    if (
+      (configuration &&
+        (configuration.method === "GET" || !configuration.method)) ||
+      !configuration
+    ) {
       sendRequest();
     }
   }, [sendRequest, configuration]);

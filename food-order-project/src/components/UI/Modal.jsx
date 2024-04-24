@@ -1,4 +1,4 @@
-﻿import { forwardRef, useEffect, useImperativeHandle, useRef } from "react";
+﻿import { useEffect, useRef } from "react";
 import CartContext from "../../store/CartContext.jsx";
 import { createPortal } from "react-dom";
 
@@ -12,7 +12,9 @@ export default function Modal({ children, className, open, onClose }) {
       modal.showModal();
     }
 
-    return () => modal.close();
+    return () => {
+      modal.close();
+    };
   }, [open]);
 
   let styles = "modal";
@@ -22,7 +24,7 @@ export default function Modal({ children, className, open, onClose }) {
 
   return createPortal(
     <dialog className={styles} ref={dialog} onClose={onClose}>
-      {children}
+      <div>{children}</div>
     </dialog>,
     document.getElementById("modal"),
   );
