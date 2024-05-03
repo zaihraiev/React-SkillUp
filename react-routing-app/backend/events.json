@@ -1,11 +1,1 @@
-{
-  "events": [
-    {
-      "id": "e1",
-      "title": "A dummy event",
-      "date": "2023-02-22",
-      "image": "https://blog.hubspot.de/hubfs/Germany/Blog_images/Optimize_Marketing%20Events%20DACH%202021.jpg",
-      "description": "Join this amazing event and connect with fellow developers."
-    }
-  ]
-}
+{"events":[{"title":"testeteteteteetetet","image":"https://dfstudio-d420.kxcdn.com/wordpress/wp-content/uploads/2019/06/digital_camera_photo-1080x675.jpg","description":"te","date":"2024-05-03","id":"e9df9760-6a66-46db-b5cc-c8b6841fb680"},{"title":"еуеуе","image":"https://t4.ftcdn.net/jpg/05/72/99/71/360_F_572997124_SYlbw6KrAdWqj5f5pZsxOJ3uobt9cKe3.jpg","description":"еуеу","date":"2024-05-03","id":"decd55f8-1aa7-48f5-9425-56263a958d6e"},{"title":"tetete","image":"https://t4.ftcdn.net/jpg/05/72/99/71/360_F_572997124_SYlbw6KrAdWqj5f5pZsxOJ3uobt9cKe3.jpg","description":"tetete","date":"2024-05-10","id":"b23ba537-8cc3-45ff-93e1-a40c48c503ea"},{"title":"eretetet","image":"https://t4.ftcdn.net/jpg/05/72/99/71/360_F_572997124_SYlbw6KrAdWqj5f5pZsxOJ3uobt9cKe3.jpg","description":"wtetete","date":"2024-05-04","id":"cd3ae06b-f029-433b-9082-78274a992226"},{"title":"Tetete","image":"https://img.freepik.com/free-photo/colorful-design-with-spiral-design_188544-9588.jpg","description":"rewrrwq","date":"2024-05-03","id":"85d2378c-c845-466c-881b-d533934cbe6a"},{"title":"tetetete","image":"https://www.befunky.com/images/prismic/1f427434-7ca0-46b2-b5d1-7d31843859b6_funky-focus-red-flower-field-after.jpeg?auto=avif,webp&format=jpg&width=863","description":"tetwe","date":"2024-04-20","id":"69641b00-9be8-442c-8cd0-d9acfdc7f091"},{"title":"Test","image":"https://www.befunky.com/images/prismic/1f427434-7ca0-46b2-b5d1-7d31843859b6_funky-focus-red-flower-field-after.jpeg?auto=avif,webp&format=jpg&width=863","description":"Tetetet","date":"2024-05-08","id":"6d402d36-bb24-4671-afbe-eb1363699361"},{"id":"e1","title":"A dummy event","date":"2023-02-22","image":"https://blog.hubspot.de/hubfs/Germany/Blog_images/Optimize_Marketing%20Events%20DACH%202021.jpg","description":"Join this amazing event and connect with fellow developers."}]}
